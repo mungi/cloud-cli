@@ -36,6 +36,7 @@ RUN wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraf
 RUN KUBECTL_VERSION=$(wget --no-cache -qO- https://storage.googleapis.com/kubernetes-release/release/stable.txt) && \
     wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl && chmod +x /usr/local/bin/kubectl && \
     wget -q -O- ${HELM_FILE} | tar xz && mv linux-amd64/helm /usr/local/bin/ && rm -rf linux-amd64  && \
+    helm repo add stable https://kubernetes-charts.storage.googleapis.com/ && helm repo update && \
     wget -q ${AWS_IAM_AUTH_FILE} -O /usr/local/bin/aws-iam-authenticator && chmod +x /usr/local/bin/aws-iam-authenticator  && \
     wget -q -O- "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /usr/local/bin/
 
