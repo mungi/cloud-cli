@@ -17,7 +17,7 @@ ENV PATH=/google-cloud-sdk/bin:$PATH
 RUN apk update && \
     apk -uv add --no-cache jq groff git bash && \
     apk -uv add --no-cache --virtual .build-deps gcc build-base libffi-dev openssl-dev && \
-    pip3 install --upgrade --no-cache-dir pip awscli az-cli ansible && \
+    pip3 install --upgrade --no-cache-dir pip awscli az-cli ansible openshift && \
     apk del --no-network --no-cache .build-deps && \
     rm -rf /var/cache/apk/*
 
